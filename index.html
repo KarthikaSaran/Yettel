@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yettel Leadership Session | AI Agents Workshop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        yettel: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                        dark: { 800: '#1e293b', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active { border-bottom: 3px solid #16a34a; color: #16a34a; font-weight: 600; }
+        .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .stat-card { background: linear-gradient(135deg, #166534 0%, #16a34a 100%); color: white; border-radius: 12px; padding: 20px; text-align: center; }
+        .timeline-item { border-left: 3px solid #16a34a; padding-left: 20px; margin-bottom: 16px; position: relative; }
+        .timeline-item::before { content: ''; width: 12px; height: 12px; background: #16a34a; border-radius: 50%; position: absolute; left: -7.5px; top: 4px; }
+        .exercise-card { border: 2px solid #dcfce7; border-radius: 12px; padding: 20px; margin-bottom: 16px; transition: all 0.2s; }
+        .exercise-card:hover { border-color: #16a34a; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15); }
+        body { background: #f8fafc; }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #166534 100%); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Hero -->
+    <div class="hero text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-yettel-500 rounded-lg flex items-center justify-center font-bold text-white text-lg">Y</div>
+                <span class="text-sm opacity-75">Yettel Leadership Program</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-3">AI Agents for Leaders</h1>
+            <p class="text-lg opacity-90 max-w-2xl">90-Minute Hands-On Workshop | Building AI Agents with MS Copilot Studio</p>
+            <div class="flex gap-4 mt-6 flex-wrap">
+                <div class="bg-white/10 backdrop-blur rounded-lg px-4 py-2 text-sm">90 Minutes</div>
+                <div class="bg-white/10 backdrop-blur rounded-lg px-4 py-2 text-sm">Non-Technical Audience</div>
+                <div class="bg-white/10 backdrop-blur rounded-lg px-4 py-2 text-sm">MS Copilot Studio</div>
+                <div class="bg-white/10 backdrop-blur rounded-lg px-4 py-2 text-sm">Hands-On</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="max-w-6xl mx-auto px-6 mt-6">
+        <div class="flex gap-1 overflow-x-auto border-b border-gray-200 mb-6">
+            <button class="tab-btn active px-4 py-3 text-sm whitespace-nowrap" onclick="switchTab('overview')">Session Plan</button>
+            <button class="tab-btn px-4 py-3 text-sm whitespace-nowrap" onclick="switchTab('yettel')">Yettel Context</button>
+            <button class="tab-btn px-4 py-3 text-sm whitespace-nowrap" onclick="switchTab('agents')">AI Agents 101</button>
+            <button class="tab-btn px-4 py-3 text-sm whitespace-nowrap" onclick="switchTab('copilot')">Copilot Studio Exercises</button>
+            <button class="tab-btn px-4 py-3 text-sm whitespace-nowrap" onclick="switchTab('business')">Business Case</button>
+            <button class="tab-btn px-4 py-3 text-sm whitespace-nowrap" onclick="switchTab('resources')">Resources</button>
+        </div>
+
+        <!-- Tab 1: Session Plan -->
+        <div id="overview" class="tab-content active">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Session Flow: 90-Minute Workshop</h2>
+                <p class="text-gray-600 mb-6">A structured hands-on session designed for Yettel's non-technical leaders to understand and build AI agents.</p>
+
+                <div class="space-y-4">
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Opening & Ice-Breaker</h3>
+                                <p class="text-gray-600 text-sm mt-1">Interactive demo: Show an AI agent handling a live customer query. Ask: "How many steps did that save?" Get participants to share their biggest repetitive task.</p>
+                            </div>
+                            <span class="text-yettel-600 font-mono text-sm whitespace-nowrap">0-10 min</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">What Are AI Agents? (Simplified)</h3>
+                                <p class="text-gray-600 text-sm mt-1">Librarian vs Accountant analogy. Chatbot = retrieves answers. Agent = reasons, plans, acts. Show the spectrum: Rule-based Bot → Chatbot → AI Agent → Autonomous Agent.</p>
+                            </div>
+                            <span class="text-yettel-600 font-mono text-sm whitespace-nowrap">10-20 min</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Yettel-Specific Use Cases</h3>
+                                <p class="text-gray-600 text-sm mt-1">Present 3-4 real scenarios from Yettel's operations: customer billing FAQ, internal HR queries, IT helpdesk, sales lead qualification. Leaders vote on which to build.</p>
+                            </div>
+                            <span class="text-yettel-600 font-mono text-sm whitespace-nowrap">20-30 min</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Hands-On: Build Your First Agent</h3>
+                                <p class="text-gray-600 text-sm mt-1">Guided exercise in MS Copilot Studio. Each participant builds a simple agent from scratch using prepared FAQ documents. Step-by-step with facilitator screen-share.</p>
+                            </div>
+                            <span class="text-yettel-600 font-mono text-sm whitespace-nowrap">30-60 min</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Show & Tell + Discussion</h3>
+                                <p class="text-gray-600 text-sm mt-1">2-3 participants demo their agents. Group discusses: Where could this save the most time in your department? What surprised you?</p>
+                            </div>
+                            <span class="text-yettel-600 font-mono text-sm whitespace-nowrap">60-75 min</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Strategic Wrap-Up & Next Steps</h3>
+                                <p class="text-gray-600 text-sm mt-1">Framework for identifying agent opportunities. ROI metrics to watch. 90-day follow-up plan. Each leader commits to one use case to explore.</p>
+                            </div>
+                            <span class="text-yettel-600 font-mono text-sm whitespace-nowrap">75-90 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Workshop Logistics</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-sm font-medium text-gray-500">Group Size</p>
+                        <p class="text-lg font-semibold text-gray-800">8-20 participants</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-sm font-medium text-gray-500">Prerequisites</p>
+                        <p class="text-lg font-semibold text-gray-800">M365 account + laptop</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-sm font-medium text-gray-500">Trainer:Participant Ratio</p>
+                        <p class="text-lg font-semibold text-gray-800">1:10 max</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Yettel Context -->
+        <div id="yettel" class="tab-content">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">About Yettel</h2>
+                <p class="text-gray-600 mb-6">Understanding the company context helps tailor the session to real business challenges.</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Company Overview</h3>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li><strong>Markets:</strong> Hungary, Bulgaria, Serbia (+ Slovakia as O2)</li>
+                            <li><strong>Subscribers:</strong> 12.2M mobile + 0.4M broadband</li>
+                            <li><strong>Parent:</strong> e& PPF Telecom Group (e& 50%+1, PPF 50%-1)</li>
+                            <li><strong>Employees:</strong> ~7,000 across the group</li>
+                            <li><strong>Brand Launch:</strong> 2022 (formerly Telenor CEE)</li>
+                            <li><strong>Services:</strong> Mobile, fixed-line, broadband, data, IPTV, B2B infrastructure</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Digital Transformation</h3>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li><strong>Target:</strong> 95% online customer interactions by 2025</li>
+                            <li><strong>AI Department:</strong> Dedicated AI & Data team created in early 2025</li>
+                            <li><strong>AI Lab:</strong> Fostering collaboration between data teams and business units</li>
+                            <li><strong>First in region:</strong> Prepaid eSIM activation via app</li>
+                            <li><strong>Infrastructure:</strong> AI-powered network operations via CETIN</li>
+                            <li><strong>Policy:</strong> Formal responsible AI policy in place</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Key Business Challenges (Session Relevance)</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Price-Based Competition</h4>
+                        <p class="text-sm text-gray-600 mt-1">CEE telecom markets are price-sensitive. AI agents can reduce service costs while maintaining quality — directly addressing margin pressure.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Legacy System Modernization</h4>
+                        <p class="text-sm text-gray-600 mt-1">Transitioning from traditional operator to digital services provider. AI agents sit on top of existing systems, offering quick wins without full re-architecture.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">5G Investment Pressure</h4>
+                        <p class="text-sm text-gray-600 mt-1">Capital-intensive 5G rollout requires efficiency gains elsewhere. AI agents can automate high-volume interactions, freeing budget for infrastructure.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Customer Experience Gap</h4>
+                        <p class="text-sm text-gray-600 mt-1">Moving from 12.2M subscribers to digital-first engagement. AI agents can handle 70%+ of routine queries (like Vodafone's TOBi) instantly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Why This Session Matters for Yettel</h3>
+                <p class="text-gray-600 text-sm">Yettel has already committed to AI at the infrastructure level (AI-powered network ops, dedicated AI & Data department). This leadership session bridges the gap between <strong>technical AI adoption</strong> and <strong>business leader fluency</strong> — ensuring leaders can identify agent opportunities in their own departments and champion AI initiatives with informed judgment.</p>
+            </div>
+        </div>
+
+        <!-- Tab 3: AI Agents 101 -->
+        <div id="agents" class="tab-content">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">AI Agents: Explained Simply</h2>
+
+                <div class="bg-yettel-50 border border-yettel-200 rounded-lg p-6 mb-6">
+                    <h3 class="font-semibold text-yettel-800 mb-2">The Key Analogy</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="text-center p-4 bg-white rounded-lg">
+                            <p class="text-3xl mb-2">📚</p>
+                            <p class="font-semibold text-gray-800">Chatbot = Librarian</p>
+                            <p class="text-sm text-gray-600 mt-1">You ask, it retrieves information</p>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-lg border-2 border-yettel-500">
+                            <p class="text-3xl mb-2">🧮</p>
+                            <p class="font-semibold text-gray-800">AI Agent = Accountant</p>
+                            <p class="text-sm text-gray-600 mt-1">Reasons through problems, makes plans, takes action</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="font-semibold text-gray-800 mb-3">The Agent Spectrum</h3>
+                <div class="flex flex-col md:flex-row gap-2 mb-6">
+                    <div class="flex-1 bg-gray-100 rounded-lg p-3 text-center text-sm">
+                        <p class="font-medium">Rule-Based Bot</p>
+                        <p class="text-gray-500 text-xs">If X → do Y</p>
+                    </div>
+                    <div class="flex-1 bg-gray-200 rounded-lg p-3 text-center text-sm">
+                        <p class="font-medium">Chatbot</p>
+                        <p class="text-gray-500 text-xs">Understands language, retrieves answers</p>
+                    </div>
+                    <div class="flex-1 bg-yettel-100 rounded-lg p-3 text-center text-sm border border-yettel-300">
+                        <p class="font-medium text-yettel-800">AI Agent</p>
+                        <p class="text-gray-500 text-xs">Reasons, plans, uses tools</p>
+                    </div>
+                    <div class="flex-1 bg-yettel-200 rounded-lg p-3 text-center text-sm">
+                        <p class="font-medium">Autonomous Agent</p>
+                        <p class="text-gray-500 text-xs">Self-directed, multi-step goals</p>
+                    </div>
+                </div>
+
+                <h3 class="font-semibold text-gray-800 mb-3">What Makes It an "Agent"?</h3>
+                <p class="text-gray-600 text-sm mb-4">AI Agent = LLM + Tools + Guidance</p>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="font-medium text-gray-800">LLM (Brain)</p>
+                        <p class="text-sm text-gray-600 mt-1">Understands language, reasons about problems</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="font-medium text-gray-800">Tools (Hands)</p>
+                        <p class="text-sm text-gray-600 mt-1">Can search databases, send emails, update systems</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="font-medium text-gray-800">Guidance (Instructions)</p>
+                        <p class="text-sm text-gray-600 mt-1">Rules about when to act, when to escalate to humans</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Common Misconceptions (Address These Early)</h3>
+                <div class="space-y-3">
+                    <div class="flex gap-3 items-start">
+                        <span class="text-red-500 font-bold text-lg">✗</span>
+                        <div>
+                            <p class="font-medium text-gray-800">"AI always improves productivity"</p>
+                            <p class="text-sm text-gray-600">Reality: Gains require thoughtful implementation. Not every process benefits equally.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-start">
+                        <span class="text-red-500 font-bold text-lg">✗</span>
+                        <div>
+                            <p class="font-medium text-gray-800">"Full automation without oversight"</p>
+                            <p class="text-sm text-gray-600">Reality: Agents need training, fine-tuning, and human oversight — especially for sensitive decisions.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-start">
+                        <span class="text-red-500 font-bold text-lg">✗</span>
+                        <div>
+                            <p class="font-medium text-gray-800">"AI will replace entire workforces"</p>
+                            <p class="text-sm text-gray-600">Reality: Only ~5% of occupations could be fully automated. AI reshapes roles, not erases them.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-start">
+                        <span class="text-red-500 font-bold text-lg">✗</span>
+                        <div>
+                            <p class="font-medium text-gray-800">"Only large enterprises can benefit"</p>
+                            <p class="text-sm text-gray-600">Reality: No-code tools like Copilot Studio make agents accessible to any team size.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-start">
+                        <span class="text-red-500 font-bold text-lg">✗</span>
+                        <div>
+                            <p class="font-medium text-gray-800">"One-size-fits-all solutions work"</p>
+                            <p class="text-sm text-gray-600">Reality: Customization is mandatory for real value. Generic agents deliver generic results.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Telecom-Specific Use Cases</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Customer Service</h4>
+                        <p class="text-sm text-gray-600 mt-1">Vodafone's "TOBi": 10M+ interactions/month, 70% resolved without human escalation across 15 markets.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Network Operations</h4>
+                        <p class="text-sm text-gray-600 mt-1">AT&T's optimization agents: 37% reduction in service-affecting outages, processing 1B+ network events/day.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Subscription Management</h4>
+                        <p class="text-sm text-gray-600 mt-1">Automated billing, plan changes, retention offers, and fraud detection — high-volume, multi-system coordination.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Internal Operations</h4>
+                        <p class="text-sm text-gray-600 mt-1">HR onboarding workflows, IT helpdesk, procurement approvals, and cross-department coordination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Copilot Studio Exercises -->
+        <div id="copilot" class="tab-content">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">MS Copilot Studio: Hands-On Exercises</h2>
+                <p class="text-gray-600 mb-6">Three ready-to-use exercises for the 30-minute hands-on segment. Each is designed for complete beginners with no coding required.</p>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <h4 class="font-medium text-blue-800">What is Copilot Studio?</h4>
+                    <p class="text-sm text-blue-700 mt-1">A no-code/low-code SaaS platform where you describe your agent in plain English, and the AI generates your agent's name, instructions, knowledge sources, and conversation flows. No programming required. 1,400+ pre-built connectors to Teams, Outlook, Dynamics, ServiceNow, etc.</p>
+                </div>
+            </div>
+
+            <!-- Exercise A -->
+            <div class="card">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-yettel-500 rounded-full flex items-center justify-center text-white font-bold text-sm">A</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Telecom Customer FAQ Bot</h3>
+                        <span class="text-xs text-gray-500">35 minutes | Recommended for session</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">1</span>
+                        <p class="text-sm text-gray-600">Go to <strong>copilotstudio.microsoft.com</strong> and sign in with your work/school account</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">2</span>
+                        <p class="text-sm text-gray-600">Click <strong>"Create"</strong> → select <strong>"New agent"</strong></p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">3</span>
+                        <p class="text-sm text-gray-600">In the description box, type: <em>"Help customers of Yettel find answers about billing, plan changes, network coverage, and SIM replacement"</em></p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">4</span>
+                        <p class="text-sm text-gray-600">Accept the AI-generated name/instructions or tweak them to your liking</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">5</span>
+                        <p class="text-sm text-gray-600"><strong>Add Knowledge:</strong> Click "Knowledge" → "Add" → choose "Files" — upload the prepared FAQ document (10-15 common telecom Q&As)</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">6</span>
+                        <p class="text-sm text-gray-600"><strong>Create 3 Topics:</strong> Billing Inquiry, Plan Change, Network Issue — each with trigger phrases and simple message responses</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">7</span>
+                        <p class="text-sm text-gray-600"><strong>Test:</strong> Use the built-in test panel to ask questions like "My bill seems too high" or "How do I change my plan?"</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-yettel-100 text-yettel-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">8</span>
+                        <p class="text-sm text-gray-600"><strong>Publish:</strong> Deploy to a demo website with one click</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise B -->
+            <div class="card">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">B</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Internal HR Query Agent</h3>
+                        <span class="text-xs text-gray-500">30 minutes | Alternative exercise</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex gap-3">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">1</span>
+                        <p class="text-sm text-gray-600">Create new agent with description: <em>"Answer employee questions about leave policies, payroll dates, benefits enrollment, and office procedures"</em></p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">2</span>
+                        <p class="text-sm text-gray-600"><strong>Add Knowledge:</strong> Upload company leave policy PDF or sample HR FAQ document as the knowledge source</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">3</span>
+                        <p class="text-sm text-gray-600"><strong>Create Topics:</strong> "Leave Policy" (triggers: how much vacation, sick leave) | "Payroll" (triggers: when is payday) | "Escalation" (triggers: speak to HR)</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">4</span>
+                        <p class="text-sm text-gray-600"><strong>Test:</strong> Ask "How many sick days do I get?" or "When is next payday?"</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">5</span>
+                        <p class="text-sm text-gray-600"><strong>Publish:</strong> Deploy to Microsoft Teams channel for internal use</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise C -->
+            <div class="card">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">C</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">IT Helpdesk Agent</h3>
+                        <span class="text-xs text-gray-500">30 minutes | Alternative exercise</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">1</span>
+                        <p class="text-sm text-gray-600">Create agent: <em>"Help employees troubleshoot common IT issues like password resets, VPN problems, software installation, and printer setup"</em></p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">2</span>
+                        <p class="text-sm text-gray-600"><strong>Add Knowledge:</strong> Upload a simple IT troubleshooting guide (prepared 1-pager covering top 5 issues)</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">3</span>
+                        <p class="text-sm text-gray-600"><strong>Create Topics:</strong> "Password Reset" (step-by-step instructions) | "VPN Issues" (troubleshooting steps) | "Ticket Escalation" (auto-create ticket message)</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">4</span>
+                        <p class="text-sm text-gray-600"><strong>Test & Publish:</strong> Test with "I forgot my password" then publish to Teams</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Prerequisites & Setup Checklist</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-700 mb-2">Before the Session</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>&#9744; Work/school Microsoft 365 accounts for all participants</li>
+                            <li>&#9744; Copilot Studio trial licenses pre-provisioned by tenant admin</li>
+                            <li>&#9744; Sample FAQ documents prepared (1-2 pages each)</li>
+                            <li>&#9744; Printed step-by-step lab guides with screenshots</li>
+                            <li>&#9744; Backup demo agent ready in case of environment issues</li>
+                            <li>&#9744; Wi-Fi tested for 20+ concurrent connections</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-700 mb-2">Technical Requirements</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>&#9744; Modern browser (Edge or Chrome)</li>
+                            <li>&#9744; No software installation needed</li>
+                            <li>&#9744; Trial allows building & testing (not production publishing)</li>
+                            <li>&#9744; Knowledge files must be under 7 MB</li>
+                            <li>&#9744; Only modern SharePoint pages supported for web sources</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Facilitation Tips</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <p class="font-medium text-yellow-800 mb-1">Show the "before"</p>
+                        <p>Start by showing the manual process first, then demonstrate the AI alternative. Makes the value immediately tangible.</p>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <p class="font-medium text-yellow-800 mb-1">Same tool for everyone</p>
+                        <p>Have all participants use the same AI tool to reduce troubleshooting friction and enable peer support.</p>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <p class="font-medium text-yellow-800 mb-1">End with "Show & Tell"</p>
+                        <p>Have 2-3 participants demo their agents. Builds pride, sparks ideas, and creates social proof within the group.</p>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <p class="font-medium text-yellow-800 mb-1">90-day follow-up</p>
+                        <p>Organizations that schedule a follow-up session see significantly higher sustained adoption rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 5: Business Case -->
+        <div id="business" class="tab-content">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">The Business Case for AI Agents</h2>
+                <div class="grid md:grid-cols-4 gap-4 mb-6">
+                    <div class="stat-card">
+                        <p class="text-3xl font-bold">171%</p>
+                        <p class="text-sm opacity-90 mt-1">Average projected ROI</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-3xl font-bold">74%</p>
+                        <p class="text-sm opacity-90 mt-1">Achieve ROI in Year 1</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-3xl font-bold">79%</p>
+                        <p class="text-sm opacity-90 mt-1">Orgs have implemented agents</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-3xl font-bold">$236B</p>
+                        <p class="text-sm opacity-90 mt-1">Market size by 2034</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-4">Adoption Reality Check</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-700 mb-3">Current State (2025)</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><strong>79%</strong> of organizations have implemented AI agents at some level (PwC)</li>
+                            <li>But only <strong>11%</strong> run them in production — massive experimentation-to-deployment gap</li>
+                            <li><strong>96%</strong> of IT leaders plan to expand implementations in 2025</li>
+                            <li><strong>52%</strong> of executives say their org has deployed agents (Google Cloud)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-700 mb-3">Top Use Cases by Adoption</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="h-3 bg-yettel-500 rounded" style="width: 49%"></div>
+                                <span class="text-xs text-gray-600">Customer Service (49%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="h-3 bg-yettel-500 rounded" style="width: 46%"></div>
+                                <span class="text-xs text-gray-600">Marketing (46%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="h-3 bg-yettel-500 rounded" style="width: 46%"></div>
+                                <span class="text-xs text-gray-600">Security Ops (46%)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="h-3 bg-yettel-500 rounded" style="width: 45%"></div>
+                                <span class="text-xs text-gray-600">Tech Support (45%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-4">Decision Framework: Where Do Agents Add Value?</h3>
+                <p class="text-sm text-gray-600 mb-4">Use this framework to help leaders identify opportunities in their departments:</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="text-left p-3 font-medium text-gray-700">Criteria</th>
+                                <th class="text-left p-3 font-medium text-green-700">Strong Agent Fit</th>
+                                <th class="text-left p-3 font-medium text-yellow-700">Better as Automation</th>
+                                <th class="text-left p-3 font-medium text-blue-700">Human + Agent Support</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t">
+                                <td class="p-3 text-gray-600">Volume</td>
+                                <td class="p-3 text-gray-600">High volume, repetitive</td>
+                                <td class="p-3 text-gray-600">Predictable, structured</td>
+                                <td class="p-3 text-gray-600">Variable, novel situations</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="p-3 text-gray-600">Complexity</td>
+                                <td class="p-3 text-gray-600">Multi-system coordination</td>
+                                <td class="p-3 text-gray-600">Single-system, strict rules</td>
+                                <td class="p-3 text-gray-600">Requires business judgment</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="p-3 text-gray-600">Example</td>
+                                <td class="p-3 text-gray-600">Billing queries, routing, intake</td>
+                                <td class="p-3 text-gray-600">Invoice generation, alerts</td>
+                                <td class="p-3 text-gray-600">Retention offers, complaints</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Telecom Success Stories</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">Vodafone — TOBi</h4>
+                        <p class="text-sm text-gray-600 mt-1">10M+ interactions/month across 15 markets. 70% resolution without human escalation. Handles billing, plan changes, and technical support.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <h4 class="font-medium text-gray-800">AT&T — Network Optimization</h4>
+                        <p class="text-sm text-gray-600 mt-1">37% reduction in service-affecting outages. Processes 1B+ network events per day. Predictive maintenance and auto-resolution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Resources -->
+        <div id="resources" class="tab-content">
+            <div class="card">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Resources & References</h2>
+
+                <h3 class="font-semibold text-gray-800 mb-3">Copilot Studio</h3>
+                <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                    <li><a href="https://copilotstudio.microsoft.com" class="text-yettel-600 hover:underline" target="_blank">copilotstudio.microsoft.com</a> — Main platform (sign in with work account)</li>
+                    <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio" class="text-yettel-600 hover:underline" target="_blank">Copilot Studio Documentation</a> — Official Microsoft docs</li>
+                    <li><a href="https://learn.microsoft.com/en-us/training/paths/power-virtual-agents-workshop/" class="text-yettel-600 hover:underline" target="_blank">Create Agents — Online Workshop</a> — Microsoft's free learning path</li>
+                    <li><a href="https://microsoft.github.io/agent-academy/" class="text-yettel-600 hover:underline" target="_blank">Microsoft Agent Academy</a> — Free multi-phase training program (launched 2026)</li>
+                    <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing" class="text-yettel-600 hover:underline" target="_blank">Licensing & Pricing</a> — Copilot Credits model</li>
+                </ul>
+
+                <h3 class="font-semibold text-gray-800 mb-3">AI Agents — Key Reading</h3>
+                <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                    <li><a href="https://www.microsoft.com/en-us/microsoft-copilot/copilot-101/how-do-ai-agents-work" class="text-yettel-600 hover:underline" target="_blank">How Do AI Agents Work?</a> — Microsoft explainer</li>
+                    <li><a href="https://www.ibm.com/think/topics/ai-agents" class="text-yettel-600 hover:underline" target="_blank">What Are AI Agents?</a> — IBM Think</li>
+                    <li><a href="https://theexpertcommunity.com/artificial-intelligence/ai-automation/agentic-ai-in-2026-what-business-leaders-need-to-know-right-now/" class="text-yettel-600 hover:underline" target="_blank">Agentic AI: What Business Leaders Need to Know</a></li>
+                    <li><a href="https://cloud.google.com/transform/roi-of-ai-how-agents-help-business" class="text-yettel-600 hover:underline" target="_blank">The ROI of AI: How Agents Help Business</a> — Google Cloud</li>
+                </ul>
+
+                <h3 class="font-semibold text-gray-800 mb-3">Telecom + AI</h3>
+                <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                    <li><a href="https://www.aimagicx.com/blog/ai-telecom-enterprise-agentic-adoption-2026" class="text-yettel-600 hover:underline" target="_blank">Why Telecom Is Leading Enterprise AI Agent Adoption</a></li>
+                    <li><a href="https://www.concentrix.com/insights/blog/top-5-agentic-ai-use-cases-in-telecom/" class="text-yettel-600 hover:underline" target="_blank">Top 5 Agentic AI Use Cases in Telecom</a> — Concentrix</li>
+                    <li><a href="https://newsroom.servicenow.com/press-releases/details/2025/ServiceNow-introduces-AI-agents-built-for-the-telecom-industry-to-drive-productivity-across-the-entire-service-lifecycle-03-03-2025-traffic/default.aspx" class="text-yettel-600 hover:underline" target="_blank">ServiceNow AI Agents for Telecom</a></li>
+                </ul>
+
+                <h3 class="font-semibold text-gray-800 mb-3">Workshop Design</h3>
+                <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                    <li><a href="https://www.nngroup.com/articles/preparing-ai-workshops/" class="text-yettel-600 hover:underline" target="_blank">4 Tips for Preparing AI-Enhanced Workshops</a> — NN/g</li>
+                    <li><a href="https://aismartventures.com/posts/how-to-run-an-ai-workshop-for-your-business-team-without-disrupting-operations/" class="text-yettel-600 hover:underline" target="_blank">How to Run an AI Workshop for Your Business Team</a></li>
+                    <li><a href="https://www.pragmatic.digital/ai-transformation-suite/executive-ai-briefing" class="text-yettel-600 hover:underline" target="_blank">AI Executive Briefing in 90 Minutes</a> — Pragmatic Digital</li>
+                </ul>
+
+                <h3 class="font-semibold text-gray-800 mb-3">Yettel Company</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li><a href="https://www.ppf.eu/en/our-companies/yettel" class="text-yettel-600 hover:underline" target="_blank">PPF Group | Yettel</a></li>
+                    <li><a href="https://bbj.hu/business/tech/telco/generative-ai-takes-center-stage-at-yettel-hungary/" class="text-yettel-600 hover:underline" target="_blank">Generative AI at Yettel Hungary</a> — Budapest Business Journal</li>
+                    <li><a href="https://seenews.com/news/yettels-digital-journey-transforming-telecom-with-95-percent-online-interactions-by-2025-1283567" class="text-yettel-600 hover:underline" target="_blank">Yettel's Digital Journey: 95% Online by 2025</a> — SeeNews</li>
+                    <li><a href="https://www.eandppftelecom.eu/corporate-governance/senior-management" class="text-yettel-600 hover:underline" target="_blank">e& PPF Telecom Group — Senior Management</a></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-gray-800 mb-3">Recent Copilot Studio Updates (2025-2026)</h3>
+                <div class="space-y-3 text-sm text-gray-600">
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded px-2 py-0.5 text-xs font-medium whitespace-nowrap">May 2026</span>
+                        <p>Computer-using agents — agents can now interact with desktop applications (GA)</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded px-2 py-0.5 text-xs font-medium whitespace-nowrap">May 2026</span>
+                        <p>Redesigned workflows experience — simplified autonomous process creation</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded px-2 py-0.5 text-xs font-medium whitespace-nowrap">May 2026</span>
+                        <p>Agent Academy — free multi-phase training program from Microsoft</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded px-2 py-0.5 text-xs font-medium whitespace-nowrap">Sep 2025</span>
+                        <p>Copilot Credits model — replaced per-message billing with flexible credit system</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded px-2 py-0.5 text-xs font-medium whitespace-nowrap">2025 W2</span>
+                        <p>Voice interactions — no-code voice agent building with barge-in control</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="bg-purple-100 text-purple-800 rounded px-2 py-0.5 text-xs font-medium whitespace-nowrap">2025</span>
+                        <p>Model Context Protocol (MCP) support — connect to external tools more easily</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="max-w-6xl mx-auto px-6 py-8 mt-8 border-t border-gray-200">
+        <p class="text-sm text-gray-500 text-center">Yettel Leadership Session — AI Agents Workshop Research Dashboard | Prepared for B2B Training Program</p>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
